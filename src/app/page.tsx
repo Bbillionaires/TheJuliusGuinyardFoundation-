@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WhatWeDoCarousel } from "@/components/WhatWeDoCarousel";
 import { site } from "@/lib/site";
 
 const programs = [
@@ -78,18 +79,8 @@ export default function Home() {
             Four ways {site.shortName} keeps our community safer in and around the water.
           </p>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {programs.map((program) => (
-            <div
-              key={program.title}
-              className="rounded-xl border border-black/10 bg-brand-sand p-6"
-            >
-              <h3 className="font-display text-base font-bold text-brand-navy">
-                {program.title}
-              </h3>
-              <p className="mt-2 text-sm text-brand-black/70">{program.description}</p>
-            </div>
-          ))}
+        <div className="mt-10">
+          <WhatWeDoCarousel programs={programs} />
         </div>
         <div className="mt-8 text-center">
           <Link href="/services" className="text-sm font-semibold text-brand-blue hover:underline">
