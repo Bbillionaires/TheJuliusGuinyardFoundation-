@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { WhatWeDoCarousel } from "@/components/WhatWeDoCarousel";
 import { site } from "@/lib/site";
@@ -59,13 +60,25 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur">
-            <p className="font-display text-lg font-bold text-white">Why it matters</p>
-            <p className="mt-3 text-white/80">
-              Drowning is preventable. Through swim instruction, water safety education, and a
-              trained lifeguard community, {site.shortName} is working to make sure every family
-              in {site.region} has the skills and support to stay safe around water.
-            </p>
+          <div>
+            <div className="overflow-hidden rounded-2xl shadow-xl">
+              <Image
+                src="/pool-hero.jpg"
+                alt="The Julius Guinyard Foundation logo on the pool deck at The Julius Guinyard Pool and Park"
+                width={900}
+                height={1125}
+                priority
+                className="h-auto w-full object-cover"
+              />
+            </div>
+            <div className="mt-4 rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur">
+              <p className="font-display text-base font-bold text-white">Why it matters</p>
+              <p className="mt-2 text-sm text-white/80">
+                Drowning is preventable. Through swim instruction, water safety education, and a
+                trained lifeguard community, {site.shortName} is working to make sure every family
+                in {site.region} has the skills and support to stay safe around water.
+              </p>
+            </div>
           </div>
         </div>
       </section>
