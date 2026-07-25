@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LifeRingIcon } from "@/components/LifeRingIcon";
+import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { fullAddress, mapsHref, navItems, site } from "@/lib/site";
 
@@ -8,8 +8,14 @@ export function Footer() {
     <footer className="bg-brand-navy text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4">
         <div className="lg:col-span-1">
-          <div className="flex items-center gap-2">
-            <LifeRingIcon className="h-9 w-9 text-white" />
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo-emblem.png"
+              alt="The Julius Guinyard Foundation"
+              width={500}
+              height={401}
+              className="h-14 w-auto rounded-full bg-white/95 p-1"
+            />
             <span className="font-display text-lg font-bold">{site.name}</span>
           </div>
           <p className="mt-3 text-sm text-white/70">{site.tagline}</p>

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { LifeRingIcon } from "@/components/LifeRingIcon";
 import { navItems, site } from "@/lib/site";
 
 export function Header() {
@@ -16,7 +16,14 @@ export function Header() {
           className="flex items-center gap-2 shrink-0"
           onClick={() => setOpen(false)}
         >
-          <LifeRingIcon className="h-9 w-9 text-brand-navy" />
+          <Image
+            src="/logo-emblem.png"
+            alt="The Julius Guinyard Foundation"
+            width={500}
+            height={401}
+            priority
+            className="h-11 w-auto sm:h-12"
+          />
           <span className="font-display text-lg font-bold leading-tight text-brand-navy sm:text-xl">
             The Julius Guinyard
             <br className="sm:hidden" /> Foundation
