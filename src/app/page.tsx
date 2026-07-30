@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { AnimatedPoolPhoto } from "@/components/AnimatedPoolPhoto";
 import { WhatWeDoCarousel } from "@/components/WhatWeDoCarousel";
 import { site } from "@/lib/site";
 
@@ -61,16 +61,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <div className="overflow-hidden rounded-2xl shadow-xl">
-              <Image
-                src="/pool-hero.jpg"
-                alt="The Julius Guinyard Foundation logo on the pool deck at The Julius Guinyard Pool and Park"
-                width={900}
-                height={1125}
-                priority
-                className="h-auto w-full object-cover"
-              />
-            </div>
+            <AnimatedPoolPhoto />
             <div className="mt-4 rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur">
               <p className="font-display text-base font-bold text-white">Why it matters</p>
               <p className="mt-2 text-sm text-white/80">
