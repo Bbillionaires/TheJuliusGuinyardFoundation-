@@ -27,3 +27,38 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+@keyframes ticker-flash {
+  0% {
+    color: var(--color-brand-navy);
+  }
+  12% {
+    color: #e2231a;
+  }
+  100% {
+    color: var(--color-brand-navy);
+  }
+}
+
+@keyframes ticker-flash-bg {
+  0% {
+    background-color: rgb(11 61 120 / 0.06);
+    border-color: rgb(0 0 0 / 0.1);
+  }
+  12% {
+    background-color: rgb(226 35 26 / 0.12);
+    border-color: rgb(226 35 26 / 0.6);
+  }
+  100% {
+    background-color: rgb(11 61 120 / 0.06);
+    border-color: rgb(0 0 0 / 0.1);
+  }
+}
+
+.animate-ticker-flash {
+  animation: ticker-flash 1.6s ease-out;
+}
+
+.animate-ticker-flash-bg {
+  animation: ticker-flash-bg 1.6s ease-out;
+}

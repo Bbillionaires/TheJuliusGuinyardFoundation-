@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AnimatedPoolPhoto } from "@/components/AnimatedPoolPhoto";
+import { DrowningTollTicker } from "@/components/DrowningTollTicker";
 import { WhatWeDoCarousel } from "@/components/WhatWeDoCarousel";
 import { site } from "@/lib/site";
 
@@ -121,6 +122,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <DrowningTollTicker />
     </div>
   );
 }
