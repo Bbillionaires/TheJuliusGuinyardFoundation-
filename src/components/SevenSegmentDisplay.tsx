@@ -30,11 +30,13 @@ function Digit({
   color,
   dim,
   heightPx,
+  glow,
 }: {
   char: string;
   color: string;
   dim: string;
   heightPx: number;
+  glow: boolean;
 }) {
   const lit = new Set(DIGIT_SEGMENTS[char] ?? []);
   const widthPx = heightPx * (W / H);
@@ -52,7 +54,7 @@ function Digit({
             rx={1.2}
             fill={isLit ? color : dim}
             style={
-              isLit
+              isLit && glow
                 ? { filter: `drop-shadow(0 0 3px ${color}) drop-shadow(0 0 7px ${color})` }
                 : undefined
             }
@@ -63,7 +65,15 @@ function Digit({
   );
 }
 
-function Separator({ color, heightPx }: { color: string; heightPx: number }) {
+function Separator({
+  color,
+  heightPx,
+  glow,
+}: {
+  color: string;
+  heightPx: number;
+  glow: boolean;
+}) {
   const widthPx = heightPx * (10 / H);
   return (
     <svg width={widthPx} height={heightPx} viewBox={`0 0 10 ${H}`} className="shrink-0">
@@ -74,7 +84,7 @@ function Separator({ color, heightPx }: { color: string; heightPx: number }) {
         height={4}
         rx={1}
         fill={color}
-        style={{ filter: `drop-shadow(0 0 3px ${color})` }}
+        style={glow ? { filter: `drop-shadow(0 0 3px ${color})` } : undefined}
       />
     </svg>
   );
@@ -85,19 +95,21 @@ export function SevenSegmentDisplay({
   color,
   dim = "#3a1210",
   heightPx = 46,
+  glow = true,
 }: {
   value: string;
   color: string;
   dim?: string;
   heightPx?: number;
+  glow?: boolean;
 }) {
   return (
     <div className="flex items-end">
       {value.split("").map((char, i) =>
         char === "," ? (
-          <Separator key={i} color={color} heightPx={heightPx} />
+          <Separator key={i} color={color} heightPx={heightPx} glow={glow} />
         ) : (
-          <Digit key={i} char={char} color={color} dim={dim} heightPx={heightPx} />
+          <Digit key={i} char={char} color={color} dim={dim} heightPx={heightPx} glow={glow} />
         )
       )}
     </div>

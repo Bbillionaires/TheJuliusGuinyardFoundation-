@@ -11,10 +11,12 @@ const RATE_PER_MS = ANNUAL_ESTIMATE / MS_PER_YEAR;
 
 const BAR_SEGMENTS = 28;
 const BRAND_BLUE = "#2563eb"; // matches --color-brand-blue
-const ALERT_RED = "#c8102e"; // matches --color-brand-red
-const WHITE = "#ffffff";
-const DIM = "#0d1b30";
-const DIM_WHITE = "#3a4250";
+const BRAND_RED = "#c8102e"; // matches --color-brand-red
+const DIM_RED = "#f3dfe1";
+const DIM_TRIM = "#dce6f5";
+
+const TRIM_GRADIENT = "linear-gradient(to bottom, #3b82f6, #2563eb, #1d4ed8)";
+const TRIM_GRADIENT_ALERT = "linear-gradient(to bottom, #e0384f, #c8102e, #9c0d24)";
 
 function estimateForYearSoFar(now: number) {
   const yearStart = new Date(new Date(now).getFullYear(), 0, 1).getTime();
@@ -45,7 +47,7 @@ export function DrowningTollTicker() {
     return () => clearInterval(id);
   }, []);
 
-  const color = flashing ? ALERT_RED : BRAND_BLUE;
+  const trimColor = flashing ? BRAND_RED : BRAND_BLUE;
   const litBars = Math.round(progress * BAR_SEGMENTS);
 
   return (
@@ -55,23 +57,21 @@ export function DrowningTollTicker() {
           In Honor of Julius Guinyard
         </p>
 
-        {/* Outer bezel — white housing */}
+        {/* Outer trim */}
         <div
-          className="mt-4 rounded-2xl p-2 shadow-2xl transition-shadow duration-500"
+          className="mt-4 rounded-2xl p-2 shadow-2xl transition-[background] duration-500"
           style={{
-            background: "linear-gradient(to bottom, #ffffff, #eef1f5, #dde2e8)",
+            background: flashing ? TRIM_GRADIENT_ALERT : TRIM_GRADIENT,
             boxShadow: flashing
-              ? `0 0 0 3px ${ALERT_RED}, 0 0 40px 8px rgb(200 16 46 / 0.55), 0 20px 40px -12px rgb(0 0 0 / 0.35)`
-              : "0 20px 40px -12px rgb(0 0 0 / 0.3)",
+              ? `0 0 0 3px ${BRAND_RED}, 0 0 40px 8px rgb(200 16 46 / 0.5), 0 20px 40px -12px rgb(0 0 0 / 0.3)`
+              : "0 20px 40px -12px rgb(0 0 0 / 0.25)",
           }}
         >
           {/* Screen */}
-          <div className="relative overflow-hidden rounded-xl border border-brand-navy/20 bg-black px-6 py-6 sm:px-10">
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
-
+          <div className="relative overflow-hidden rounded-xl bg-white px-6 py-6 shadow-inner sm:px-10">
             <p
               className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.25em] transition-colors duration-500"
-              style={{ color: `${color}99` }}
+              style={{ color: trimColor }}
             >
               Est. Drowning Deaths &middot; Year to Date
             </p>
@@ -84,21 +84,21 @@ export function DrowningTollTicker() {
             >
               <SevenSegmentDisplay
                 value={count.toLocaleString()}
-                color={color}
-                dim={DIM}
+                color={BRAND_RED}
+                dim={DIM_RED}
                 heightPx={72}
+                glow={false}
               />
             </div>
 
-            {/* LED bargraph (white) — fills toward the next whole-number tick */}
+            {/* Bargraph — fills toward the next whole-number tick */}
             <div className="mt-4 flex justify-center gap-[3px]">
               {Array.from({ length: BAR_SEGMENTS }).map((_, i) => (
                 <span
                   key={i}
                   className="h-2 w-2 rounded-[2px] transition-colors duration-300"
                   style={{
-                    backgroundColor: i < litBars ? WHITE : DIM_WHITE,
-                    boxShadow: i < litBars ? `0 0 4px ${WHITE}` : undefined,
+                    backgroundColor: i < litBars ? trimColor : DIM_TRIM,
                   }}
                 />
               ))}
