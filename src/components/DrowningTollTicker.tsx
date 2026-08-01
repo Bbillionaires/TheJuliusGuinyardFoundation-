@@ -10,9 +10,9 @@ const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
 const RATE_PER_MS = ANNUAL_ESTIMATE / MS_PER_YEAR;
 
 const BAR_SEGMENTS = 28;
-const AMBER = "#ffb020";
-const ALERT_RED = "#ff2b2b";
-const DIM = "#2a1c10";
+const BRAND_BLUE = "#2563eb"; // matches --color-brand-blue
+const ALERT_RED = "#c8102e"; // matches --color-brand-red
+const DIM = "#0d1b30";
 
 function estimateForYearSoFar(now: number) {
   const yearStart = new Date(new Date(now).getFullYear(), 0, 1).getTime();
@@ -43,7 +43,7 @@ export function DrowningTollTicker() {
     return () => clearInterval(id);
   }, []);
 
-  const color = flashing ? ALERT_RED : AMBER;
+  const color = flashing ? ALERT_RED : BRAND_BLUE;
   const litBars = Math.round(progress * BAR_SEGMENTS);
 
   return (
@@ -55,10 +55,11 @@ export function DrowningTollTicker() {
 
         {/* Outer bezel */}
         <div
-          className="mt-4 rounded-2xl bg-gradient-to-b from-neutral-700 via-neutral-800 to-neutral-900 p-2 shadow-2xl transition-shadow duration-500"
+          className="mt-4 rounded-2xl p-2 shadow-2xl transition-shadow duration-500"
           style={{
+            background: "linear-gradient(to bottom, #1c3a63, #0f2340, #050c18)",
             boxShadow: flashing
-              ? `0 0 0 3px ${ALERT_RED}, 0 0 40px 8px rgb(255 43 43 / 0.55), 0 20px 40px -12px rgb(0 0 0 / 0.6)`
+              ? `0 0 0 3px ${ALERT_RED}, 0 0 40px 8px rgb(200 16 46 / 0.55), 0 20px 40px -12px rgb(0 0 0 / 0.6)`
               : "0 20px 40px -12px rgb(0 0 0 / 0.5)",
           }}
         >
