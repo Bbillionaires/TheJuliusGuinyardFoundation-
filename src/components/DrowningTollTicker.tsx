@@ -10,12 +10,12 @@ const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
 const RATE_PER_MS = ANNUAL_ESTIMATE / MS_PER_YEAR;
 
 const BAR_SEGMENTS = 28;
-const BRAND_BLUE = "#2563eb"; // matches --color-brand-blue
+const BRAND_NAVY = "#0b3d78"; // matches --color-brand-navy, used site-wide for buttons/header
 const BRAND_RED = "#c8102e"; // matches --color-brand-red
 const DIM_RED = "#f3dfe1";
 const DIM_TRIM = "#dce6f5";
 
-const TRIM_GRADIENT = "linear-gradient(to bottom, #3b82f6, #2563eb, #1d4ed8)";
+const TRIM_GRADIENT = "linear-gradient(to bottom, #1a4d8f, #0b3d78, #062544)";
 const TRIM_GRADIENT_ALERT = "linear-gradient(to bottom, #e0384f, #c8102e, #9c0d24)";
 
 function estimateForYearSoFar(now: number) {
@@ -47,7 +47,7 @@ export function DrowningTollTicker() {
     return () => clearInterval(id);
   }, []);
 
-  const trimColor = flashing ? BRAND_RED : BRAND_BLUE;
+  const trimColor = flashing ? BRAND_RED : BRAND_NAVY;
   const litBars = Math.round(progress * BAR_SEGMENTS);
 
   return (
@@ -59,18 +59,18 @@ export function DrowningTollTicker() {
 
         {/* Outer trim */}
         <div
-          className="mt-4 rounded-2xl p-2 shadow-2xl transition-[background] duration-500"
+          className="mt-4 rounded-xl p-1.5 shadow-2xl transition-[background] duration-500"
           style={{
             background: flashing ? TRIM_GRADIENT_ALERT : TRIM_GRADIENT,
             boxShadow: flashing
-              ? `0 0 0 3px ${BRAND_RED}, 0 0 40px 8px rgb(200 16 46 / 0.5), 0 20px 40px -12px rgb(0 0 0 / 0.3)`
-              : "0 20px 40px -12px rgb(0 0 0 / 0.25)",
+              ? `0 0 0 2px ${BRAND_RED}, 0 0 28px 6px rgb(200 16 46 / 0.5), 0 14px 28px -10px rgb(0 0 0 / 0.3)`
+              : "0 14px 28px -10px rgb(0 0 0 / 0.25)",
           }}
         >
           {/* Screen */}
-          <div className="relative overflow-hidden rounded-xl bg-white px-6 py-6 shadow-inner sm:px-10">
+          <div className="relative overflow-hidden rounded-lg bg-white px-4 py-4 shadow-inner sm:px-7">
             <p
-              className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.25em] transition-colors duration-500"
+              className="mb-2 font-mono text-[8px] font-semibold uppercase tracking-[0.2em] transition-colors duration-500"
               style={{ color: trimColor }}
             >
               Est. Drowning Deaths &middot; Year to Date
@@ -86,17 +86,18 @@ export function DrowningTollTicker() {
                 value={count.toLocaleString()}
                 color={BRAND_RED}
                 dim={DIM_RED}
-                heightPx={72}
+                heightPx={48}
+                thickness={6.5}
                 glow={false}
               />
             </div>
 
             {/* Bargraph — fills toward the next whole-number tick */}
-            <div className="mt-4 flex justify-center gap-[3px]">
+            <div className="mt-3 flex justify-center gap-[2px]">
               {Array.from({ length: BAR_SEGMENTS }).map((_, i) => (
                 <span
                   key={i}
-                  className="h-2 w-2 rounded-[2px] transition-colors duration-300"
+                  className="h-1.5 w-1.5 rounded-[1.5px] transition-colors duration-300"
                   style={{
                     backgroundColor: i < litBars ? trimColor : DIM_TRIM,
                   }}

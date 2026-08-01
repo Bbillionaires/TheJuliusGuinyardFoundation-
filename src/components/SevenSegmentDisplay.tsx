@@ -13,17 +13,18 @@ const DIGIT_SEGMENTS: Record<string, string[]> = {
 
 const W = 26;
 const H = 46;
-const T = 4.5;
 
-const SEGMENT_RECTS: Record<string, { x: number; y: number; w: number; h: number }> = {
-  a: { x: 4, y: 0, w: W - 8, h: T },
-  g: { x: 4, y: (H - T) / 2, w: W - 8, h: T },
-  d: { x: 4, y: H - T, w: W - 8, h: T },
-  f: { x: 0, y: T, w: T, h: (H - T * 3) / 2 },
-  b: { x: W - T, y: T, w: T, h: (H - T * 3) / 2 },
-  e: { x: 0, y: (H + T) / 2, w: T, h: (H - T * 3) / 2 },
-  c: { x: W - T, y: (H + T) / 2, w: T, h: (H - T * 3) / 2 },
-};
+function segmentRects(t: number): Record<string, { x: number; y: number; w: number; h: number }> {
+  return {
+    a: { x: 4, y: 0, w: W - 8, h: t },
+    g: { x: 4, y: (H - t) / 2, w: W - 8, h: t },
+    d: { x: 4, y: H - t, w: W - 8, h: t },
+    f: { x: 0, y: t, w: t, h: (H - t * 3) / 2 },
+    b: { x: W - t, y: t, w: t, h: (H - t * 3) / 2 },
+    e: { x: 0, y: (H + t) / 2, w: t, h: (H - t * 3) / 2 },
+    c: { x: W - t, y: (H + t) / 2, w: t, h: (H - t * 3) / 2 },
+  };
+}
 
 function Digit({
   char,
@@ -31,18 +32,21 @@ function Digit({
   dim,
   heightPx,
   glow,
+  thickness,
 }: {
   char: string;
   color: string;
   dim: string;
   heightPx: number;
   glow: boolean;
+  thickness: number;
 }) {
   const lit = new Set(DIGIT_SEGMENTS[char] ?? []);
   const widthPx = heightPx * (W / H);
+  const rects = segmentRects(thickness);
   return (
     <svg width={widthPx} height={heightPx} viewBox={`0 0 ${W} ${H}`} className="shrink-0">
-      {Object.entries(SEGMENT_RECTS).map(([id, r]) => {
+      {Object.entries(rects).map(([id, r]) => {
         const isLit = lit.has(id);
         return (
           <rect
@@ -96,12 +100,14 @@ export function SevenSegmentDisplay({
   dim = "#3a1210",
   heightPx = 46,
   glow = true,
+  thickness = 4.5,
 }: {
   value: string;
   color: string;
   dim?: string;
   heightPx?: number;
   glow?: boolean;
+  thickness?: number;
 }) {
   return (
     <div className="flex items-end">
@@ -109,7 +115,15 @@ export function SevenSegmentDisplay({
         char === "," ? (
           <Separator key={i} color={color} heightPx={heightPx} glow={glow} />
         ) : (
-          <Digit key={i} char={char} color={color} dim={dim} heightPx={heightPx} glow={glow} />
+          <Digit
+            key={i}
+            char={char}
+            color={color}
+            dim={dim}
+            heightPx={heightPx}
+            glow={glow}
+            thickness={thickness}
+          />
         )
       )}
     </div>
