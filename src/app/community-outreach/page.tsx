@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { PhotoGallery, type GalleryPhoto } from "@/components/PhotoGallery";
 import { site } from "@/lib/site";
@@ -131,6 +132,55 @@ export default function CommunityOutreachPage() {
                 allowFullScreen
                 className="h-full w-full"
               />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+              Share Our Mission
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-bold text-brand-navy sm:text-3xl">
+              Foundation Flyer
+            </h2>
+            <p className="mt-3 text-brand-black/70">
+              Print it, post it, or pass it along — help us spread the word about free swim
+              lessons and water safety across {site.region}.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center gap-6 rounded-xl border border-black/10 p-6 sm:flex-row sm:p-8">
+            <a
+              href="/JGF-Flyer.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="w-40 shrink-0 overflow-hidden rounded-lg shadow-md sm:w-48"
+            >
+              <Image
+                src="/community/foundation-flyer.jpg"
+                alt="The Julius Guinyard Foundation flyer — Water Safety and Swimming for ALL"
+                width={1200}
+                height={1553}
+                className="h-auto w-full"
+              />
+            </a>
+            <div className="text-center sm:text-left">
+              <h3 className="font-display text-lg font-bold text-brand-navy">
+                Water Safety and Swimming for ALL
+              </h3>
+              <p className="mt-2 text-sm text-brand-black/70">
+                Community swim lessons, water safety skills, affordable programs, family fun
+                days, and ways to get involved — all on one page.
+              </p>
+              <a
+                href="/JGF-Flyer.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-full bg-brand-navy px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-navy/90"
+              >
+                Download Flyer (PDF)
+              </a>
             </div>
           </div>
         </div>
