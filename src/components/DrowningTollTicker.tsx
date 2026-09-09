@@ -12,7 +12,7 @@ const RATE_PER_MS = ANNUAL_ESTIMATE / MS_PER_YEAR;
 const BAR_SEGMENTS = 28;
 const BRAND_NAVY = "#0b3d78"; // matches --color-brand-navy, used site-wide for buttons/header
 const BRAND_RED = "#c8102e"; // matches --color-brand-red
-const DIM_RED = "#f3dfe1";
+const DIM_RED = "#fbeef0";
 const DIM_TRIM = "#dce6f5";
 
 const TRIM_GRADIENT = "linear-gradient(to bottom, #1a4d8f, #0b3d78, #062544)";
@@ -86,8 +86,8 @@ export function DrowningTollTicker() {
                 value={count.toLocaleString()}
                 color={BRAND_RED}
                 dim={DIM_RED}
-                heightPx={48}
-                thickness={6.5}
+                heightPx={54}
+                thickness={5.5}
                 glow={false}
               />
             </div>

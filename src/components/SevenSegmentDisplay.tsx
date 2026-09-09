@@ -11,7 +11,7 @@ const DIGIT_SEGMENTS: Record<string, string[]> = {
   "9": ["a", "b", "c", "d", "f", "g"],
 };
 
-const W = 26;
+const W = 30;
 const H = 46;
 
 function segmentRects(t: number): Record<string, { x: number; y: number; w: number; h: number }> {
@@ -110,7 +110,7 @@ export function SevenSegmentDisplay({
   thickness?: number;
 }) {
   return (
-    <div className="flex items-end">
+    <div className="flex items-end gap-[0.15em]" style={{ fontSize: heightPx }}>
       {value.split("").map((char, i) =>
         char === "," ? (
           <Separator key={i} color={color} heightPx={heightPx} glow={glow} />
