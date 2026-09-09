@@ -7,6 +7,34 @@ export const metadata: Metadata = {
   description: `Water safety and drowning prevention resources from ${site.name}.`,
 };
 
+const quickLinks = [
+  {
+    name: "Register for Swim Lessons",
+    url: "https://fljacksonweb.myvscloud.com/webtrac/web/splash.html",
+    description: "Sign up for swim lessons through the City of Jacksonville's registration portal.",
+  },
+  {
+    name: "S.P.L.A.S.H. Squad",
+    url: "https://www.jacksonville.gov/getContentAsset/52632e74-a069-40ab-bd3b-e88567213617/bd714d09-ccf8-4e86-a041-57e2011ebfe4/JaxParks-SPLASH-Squad-Flyer_updated-3-25-22.jpg?language=en",
+    description: "Learn about JaxParks' S.P.L.A.S.H. Squad water safety program.",
+  },
+  {
+    name: "Map of Open Pools",
+    url: "https://www.jacksonville.gov/getmedia/fd2c37f1-b79c-451c-94dd-9b8eeaf133d6/Pools_2026-5-7.pdf",
+    description: "Find open public pools across Jacksonville.",
+  },
+  {
+    name: "Splash Pads",
+    url: "https://www.jacksonville.gov/departments/parks-and-recreation/jaxparks/specialty-parks",
+    description: "Locate splash pads and specialty parks throughout the city.",
+  },
+  {
+    name: "Learn-to-Swim Schedule",
+    url: "https://www.jacksonville.gov/getContentAsset/26db9d59-b2f8-4b3b-8426-371226fc8833/135b97c9-84fa-4e82-b956-0fbccec4aa1f/2026LearntoSwimSchedule.pdf?language=en",
+    description: "View the current Learn-to-Swim class schedule.",
+  },
+];
+
 const externalResources = [
   {
     name: "American Red Cross",
@@ -55,6 +83,22 @@ export default function ResourcesPage() {
           </a>
           .
         </p>
+
+        <h2 className="mt-12 font-display text-2xl font-bold text-brand-navy">Quick Links</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          {quickLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-black/10 p-6 transition hover:border-brand-blue"
+            >
+              <h3 className="font-display text-base font-bold text-brand-navy">{link.name}</h3>
+              <p className="mt-1 text-sm text-brand-black/70">{link.description}</p>
+            </a>
+          ))}
+        </div>
 
         <h2 className="mt-12 font-display text-2xl font-bold text-brand-navy">
           National Resources
