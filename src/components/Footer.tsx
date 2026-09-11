@@ -74,7 +74,7 @@ export function Footer() {
         <p>
           © {new Date().getFullYear()} {site.name}. All rights reserved.
         </p>
-        <p className="mt-1">Developed by De&rsquo;Aris Henry</p>
+        <p className="mt-1">Website Developed by De&rsquo;Aris Henry</p>
       </div>
     </footer>
   );
