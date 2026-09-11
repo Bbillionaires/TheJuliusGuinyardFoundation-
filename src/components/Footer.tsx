@@ -71,7 +71,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">
-        © {new Date().getFullYear()} {site.name}. All rights reserved.
+        © {new Date().getFullYear()} {site.name}. All rights reserved. · Developed by De&rsquo;Aris
+        Henry
       </div>
     </footer>
   );
